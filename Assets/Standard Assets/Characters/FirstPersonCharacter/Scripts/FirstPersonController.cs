@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Utility;
@@ -78,7 +79,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
             if (Input.GetKeyDown("r"))
             {
-                Application.LoadLevel(Application.loadedLevel);
+                SceneManager.LoadScene("SampleScene");
             }
             // the jump state needs to read here to make sure it is not missed
 
