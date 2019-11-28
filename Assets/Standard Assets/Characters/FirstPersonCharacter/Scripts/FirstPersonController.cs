@@ -6,8 +6,12 @@ using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Utility;
 using Random = UnityEngine.Random;
 
-namespace UnityStandardAssets.Characters.FirstPerson
-{
+namespace UnityStandardAssets.Characters.FirstPerson {
+
+    public static class StartBlind {
+        public static bool startBlind = false;
+    }
+
     [RequireComponent(typeof (CharacterController))]
     [RequireComponent(typeof (AudioSource))]
     public class FirstPersonController : MonoBehaviour
@@ -62,7 +66,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
             m_Camera.nearClipPlane = 0.1f;
-            m_Cylinder.SetActive(false);
+            if (!StartBlind.startBlind)
+            {
+                m_Cylinder.SetActive(false);
+            }
             m_Card.SetActive(false);
             m_MouseLook.XSensitivity = 0.6f;
             m_MouseLook.YSensitivity = 0.6f;

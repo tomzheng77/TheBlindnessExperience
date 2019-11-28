@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class TextAnimationControl : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class TextAnimationControl : MonoBehaviour
         Animator a = canvas.GetComponent<Animator>();
         if (a.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.85f)
         {
+            StartBlind.startBlind = true;
             SceneManager.LoadScene("SampleScene");
         }
     }
