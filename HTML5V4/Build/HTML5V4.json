@@ -1,0 +1,16 @@
+{
+"companyName": "DefaultCompany",
+"productName": "TheBlindnessExperience",
+"productVersion": "0.1",
+"dataUrl": "HTML5V4.data.unityweb",
+"wasmCodeUrl": "HTML5V4.wasm.code.unityweb",
+"wasmFrameworkUrl": "HTML5V4.wasm.framework.unityweb",
+"graphicsAPI": ["WebGL 2.0","WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"},
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.2.12f1"
+}
