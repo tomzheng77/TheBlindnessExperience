@@ -38,6 +38,7 @@ namespace UnityStandardAssets.Characters.FirstPerson {
         [SerializeField] private AudioClip m_TapSound;
         [SerializeField] private Text m_TextLabel;
         [SerializeField] private GameObject m_BackgroundMusicPlayer;
+        [SerializeField] private GameObject m_AlternativeBackgroundMusicPlayer;
 
         private Camera m_Camera;
         private bool m_Jump;
@@ -70,12 +71,12 @@ namespace UnityStandardAssets.Characters.FirstPerson {
             m_Camera.nearClipPlane = 0.1f;
             if (StartBlind.startBlind)
             {
-                AudioSource a = m_BackgroundMusicPlayer.GetComponent<AudioSource>();
-                a.volume = 0;
+                m_BackgroundMusicPlayer.GetComponent<AudioSource>().volume = 0;
             }
             else
             {
                 m_Cylinder.SetActive(false);
+                m_AlternativeBackgroundMusicPlayer.GetComponent<AudioSource>().volume = 0;
             }
             m_Card.SetActive(false);
             m_MouseLook.XSensitivity = 0.6f;
