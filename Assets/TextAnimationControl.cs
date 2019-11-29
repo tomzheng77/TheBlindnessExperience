@@ -14,6 +14,7 @@ public class TextAnimationControl : MonoBehaviour
         Animator a = canvas.GetComponent<Animator>();
         if (a.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.85f)
         {
+            Debug.Log("restart level with blindness");
             StartBlind.startBlind = true;
             SceneManager.LoadScene("SampleScene");
         }
