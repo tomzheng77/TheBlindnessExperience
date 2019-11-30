@@ -76,10 +76,10 @@ namespace UnityStandardAssets.Characters.FirstPerson {
             }
             else
             {
-                Invoke("ShowInitialText", 1);
                 m_Cylinder.SetActive(false);
                 m_AlternativeBackgroundMusicPlayer.GetComponent<AudioSource>().volume = 0;
             }
+            Invoke("ShowInitialText", 1);
             m_Card.SetActive(false);
             m_MouseLook.XSensitivity = 0.6f;
             m_MouseLook.YSensitivity = 0.6f;
@@ -87,10 +87,20 @@ namespace UnityStandardAssets.Characters.FirstPerson {
 
         private void ShowInitialText()
         {
-            m_TitleAndSubtitle.SendMessage(
-                "ShowMessage",
-                new string[] { "this is a title", "this is a subtitle" }
-            );
+            if (ActIndicator.isAct02)
+            {
+                m_TitleAndSubtitle.SendMessage(
+                    "ShowMessage",
+                    new string[] { "And now…I am at the same train station, plunged in darkness", "with only my other senses to guide me" }
+                );
+            } 
+            else
+            {
+                m_TitleAndSubtitle.SendMessage(
+                    "ShowMessage",
+                    new string[] { "I remember the time when I visited the train station", "bought a ticket, and boarded the train…" }
+                );
+            }
         }
 
 
