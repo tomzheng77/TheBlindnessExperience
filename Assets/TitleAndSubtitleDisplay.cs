@@ -19,7 +19,6 @@ public class TitleAndSubtitleDisplay : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         animator.speed = 0;
-        animator.playbackTime = 0;
     }
 
     // Update is called once per frame
@@ -36,7 +35,6 @@ public class TitleAndSubtitleDisplay : MonoBehaviour
         title.GetComponent<Text>().text = strs[0];
         subtitle.GetComponent<Text>().text = strs[1];
         animator.speed = 1;
-        animator.playbackTime = 0;
     }
 
 }

@@ -33,6 +33,7 @@ namespace UnityStandardAssets.Characters.FirstPerson {
         [SerializeField] private AudioClip[] m_FootstepSounds;    // an array of footstep sounds that will be randomly selected from.
         [SerializeField] private AudioClip m_JumpSound;           // the sound played when character leaves the ground.
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
+        [SerializeField] private AudioClip m_SorrySound;
         [SerializeField] private GameObject m_Cylinder;
         [SerializeField] private GameObject m_Card;
         [SerializeField] private AudioClip m_TapSound;
@@ -54,6 +55,7 @@ namespace UnityStandardAssets.Characters.FirstPerson {
         private float m_NextStep;
         private bool m_Jumping;
         private AudioSource m_AudioSource;
+        private AudioSource m_AltAudioSource;
 
 
         // Use this for initialization
@@ -67,8 +69,9 @@ namespace UnityStandardAssets.Characters.FirstPerson {
             m_StepCycle = 0f;
             m_NextStep = m_StepCycle/2f;
             m_Jumping = false;
-            m_AudioSource = GetComponent<AudioSource>();
-			m_MouseLook.Init(transform , m_Camera.transform);
+            m_AudioSource = GetComponents<AudioSource>()[0];
+            m_AltAudioSource = GetComponents<AudioSource>()[1];
+            m_MouseLook.Init(transform , m_Camera.transform);
             m_Camera.nearClipPlane = 0.1f;
             if (ActIndicator.isAct02)
             {
@@ -103,6 +106,12 @@ namespace UnityStandardAssets.Characters.FirstPerson {
             }
         }
 
+        public void SaySorry()
+        {
+            Debug.Log("saying sorry...");
+            m_AltAudioSource.clip = m_SorrySound;
+            m_AltAudioSource.Play();
+        }
 
         // Update is called once per frame
         private void Update()
