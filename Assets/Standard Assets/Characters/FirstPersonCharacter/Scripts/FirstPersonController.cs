@@ -41,6 +41,7 @@ namespace UnityStandardAssets.Characters.FirstPerson {
         [SerializeField] private GameObject m_BackgroundMusicPlayer;
         [SerializeField] private GameObject m_AlternativeBackgroundMusicPlayer;
         [SerializeField] private GameObject m_TitleAndSubtitle;
+        [SerializeField] private GameObject m_DroppedCard;
 
         private Camera m_Camera;
         private bool m_Jump;
@@ -56,7 +57,8 @@ namespace UnityStandardAssets.Characters.FirstPerson {
         private bool m_Jumping;
         private AudioSource m_AudioSource;
         private AudioSource m_AltAudioSource;
-
+        private bool isCrouch = false;
+        private float crouchShift = 0f;
 
         // Use this for initialization
         private void Start()
@@ -116,6 +118,8 @@ namespace UnityStandardAssets.Characters.FirstPerson {
         // Update is called once per frame
         private void Update()
         {
+            if (Input.GetKeyDown("left ctrl")) isCrouch = true;
+            if (Input.GetKeyUp("left ctrl")) isCrouch = false;
             RotateView();
             if (Input.GetKeyDown("v"))
             {
@@ -261,6 +265,14 @@ namespace UnityStandardAssets.Characters.FirstPerson {
                 newCameraPosition = m_Camera.transform.localPosition;
                 newCameraPosition.y = m_OriginalCameraPosition.y - m_JumpBob.Offset();
             }
+            if (isCrouch)
+            {
+                crouchShift += (0.55f - crouchShift) / 20f;
+            } else
+            {
+                crouchShift -= crouchShift / 20f;
+            }
+            newCameraPosition.y -= crouchShift;
             m_Camera.transform.localPosition = newCameraPosition;
             m_Cylinder.transform.localPosition = m_Camera.transform.localPosition;
         }
@@ -277,7 +289,7 @@ namespace UnityStandardAssets.Characters.FirstPerson {
 #if !MOBILE_INPUT
             // On standalone builds, walk/run speed is modified by a key press.
             // keep track of whether or not the character is walking or running
-            m_IsWalking = !Input.GetKey(KeyCode.LeftShift);
+            m_IsWalking = isCrouch || !Input.GetKey(KeyCode.LeftShift);
 #endif
             // set the desired speed to be walking or running
             speed = m_IsWalking ? m_WalkSpeed : m_RunSpeed;
