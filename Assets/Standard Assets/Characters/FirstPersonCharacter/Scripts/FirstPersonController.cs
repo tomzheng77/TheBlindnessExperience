@@ -39,6 +39,7 @@ namespace UnityStandardAssets.Characters.FirstPerson {
         [SerializeField] private Text m_TextLabel;
         [SerializeField] private GameObject m_BackgroundMusicPlayer;
         [SerializeField] private GameObject m_AlternativeBackgroundMusicPlayer;
+        [SerializeField] private GameObject m_TitleAndSubtitle;
 
         private Camera m_Camera;
         private bool m_Jump;
@@ -75,12 +76,21 @@ namespace UnityStandardAssets.Characters.FirstPerson {
             }
             else
             {
+                Invoke("ShowInitialText", 1);
                 m_Cylinder.SetActive(false);
                 m_AlternativeBackgroundMusicPlayer.GetComponent<AudioSource>().volume = 0;
             }
             m_Card.SetActive(false);
             m_MouseLook.XSensitivity = 0.6f;
             m_MouseLook.YSensitivity = 0.6f;
+        }
+
+        private void ShowInitialText()
+        {
+            m_TitleAndSubtitle.SendMessage(
+                "ShowMessage",
+                new string[] { "this is a title", "this is a subtitle" }
+            );
         }
 
 
