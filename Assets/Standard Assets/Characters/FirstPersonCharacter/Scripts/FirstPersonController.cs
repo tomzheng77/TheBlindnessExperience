@@ -8,8 +8,8 @@ using Random = UnityEngine.Random;
 
 namespace UnityStandardAssets.Characters.FirstPerson {
 
-    public static class StartBlind {
-        public static bool startBlind = false;
+    public static class ActIndicator {
+        public static bool isAct02 = false;
     }
 
     [RequireComponent(typeof (CharacterController))]
@@ -68,7 +68,7 @@ namespace UnityStandardAssets.Characters.FirstPerson {
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
             m_Camera.nearClipPlane = 0.1f;
-            if (StartBlind.startBlind)
+            if (ActIndicator.isAct02)
             {
                 AudioSource a = m_BackgroundMusicPlayer.GetComponent<AudioSource>();
                 a.volume = 0;
